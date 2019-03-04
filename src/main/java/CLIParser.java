@@ -11,7 +11,7 @@ public class CLIParser {
         options.addOption("enc",false,"Chiffrement");
         options.addOption("dec", false, "Déchiffrement");
         options.addOption("in", true, "Fichier d'entré");
-        options.addOption("out", false, "Fichier de sorti");
+        options.addOption("out", true, "Fichier de sorti");
 
         HelpFormatter formatter = new HelpFormatter();
         formatter.printHelp("CLI options : ", options);
@@ -22,7 +22,6 @@ public class CLIParser {
         if(cmd.hasOption("enc")){
             System.out.println(cmd);
         }
-
         if(cmd.hasOption("dec")){
             System.out.println(cmd);
         }
