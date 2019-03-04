@@ -12,6 +12,7 @@ public class CLIParser {
         options.addOption("dec", false, "Déchiffrement");
         options.addOption("in", true, "Fichier d'entré");
         options.addOption("out", false, "Fichier de sorti");
+        options.addOption("pass", true, "Mot de passe ");
 
         HelpFormatter formatter = new HelpFormatter();
         formatter.printHelp("CLI options : ", options);
