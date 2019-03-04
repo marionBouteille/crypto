@@ -1,5 +1,8 @@
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
@@ -40,4 +43,6 @@ public class Encrypt {
         int lastBlock = blocks - 1;
 
     }
+
+
 }
