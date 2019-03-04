@@ -11,7 +11,7 @@ public class PBKDF2 {
     private static final Random RANDOM = new SecureRandom();
 
     public static void main(String[] args) throws Exception {
-        byte[] hashBytes = hashPassword("ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789");
+        byte[] hashBytes = hashPassword("aBCDEFGHIJKLMNOPQRSTUVWXYZ123456789");
 
         System.out.println(Arrays.toString(hashBytes));
     }
@@ -22,10 +22,12 @@ public class PBKDF2 {
     }
 
     public static boolean testCharacters(String password){
+        String specialChars = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?";
         char currentCharacter;
         boolean numberPresent = false;
         boolean upperCasePresent = false;
         boolean lowerCasePresent = false;
+        boolean characterPresent = true;
 
         for(int i = 0; i < password.length(); i++){
             currentCharacter = password.charAt(i);
@@ -37,10 +39,13 @@ public class PBKDF2 {
             } else if (Character.isLowerCase(currentCharacter)){
                 lowerCasePresent = true;
             }
+            else if (specialChars.contains(String.valueOf(currentCharacter))){
+                characterPresent = false;
+            }
         }
 
 
-        return numberPresent && upperCasePresent && lowerCasePresent;
+        return numberPresent && upperCasePresent && lowerCasePresent && characterPresent;
     }
 
     public static byte[] hashPassword(String password) throws Exception {
@@ -56,14 +61,14 @@ public class PBKDF2 {
                 byte[] salt = getNextSalt();
                 int iterations = 10000;
 
-                PBEKeySpec spec = new PBEKeySpec(chars, salt, iterations, 256 * 8);
+                PBEKeySpec spec = new PBEKeySpec(chars, salt, iterations, 32 * 8);
                 SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
                 byte[] key = skf.generateSecret(spec).getEncoded();
 
                 return key;
             }
             else {
-                System.out.println("Le mot de passe doit contenir au moins un chiffre, une majuscule et une minuscule ");
+                System.out.println("Le mot de passe doit contenir au moins un chiffre, une majuscule et une minuscule et ne doit pas contenir de caractères spéciaux ");
 
             }
         }
