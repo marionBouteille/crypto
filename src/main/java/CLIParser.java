@@ -23,7 +23,6 @@ public class CLIParser {
         if(cmd.hasOption("enc")){
             System.out.println(cmd);
         }
-
         if(cmd.hasOption("dec")){
             System.out.println(cmd);
         }
