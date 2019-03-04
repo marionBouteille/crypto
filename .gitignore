@@ -23,6 +23,6 @@
 hs_err_pid*
 
 #exclude idea folder
-.idea/
+.idea/*
 #User specific stuff
 .idea/workspace.xml
